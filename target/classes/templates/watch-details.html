@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title th:text="${watch.name + ' | LUXORA'}">Watch | LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="wrap page-wrap">
+            <p class="breadcrumb">
+                <a th:href="@{/}">Home</a>
+                /
+                <a th:href="@{/collections}">Collections</a>
+                /
+                <span th:text="${watch.name}">Watch</span>
+            </p>
+            <section class="detail-layout">
+                <div class="detail-image">
+                    <img th:src="${watch.imageUrl}" th:alt="${watch.name}">
+                </div>
+                <div class="detail-copy">
+                    <p class="eyebrow" th:text="${watch.brand + ' · ' + watch.category}">BRAND</p>
+                    <h1 th:text="${watch.name}">Watch name</h1>
+                    <div class="price-line">
+                        <strong class="detail-price" th:text="${'₹' + #numbers.formatDecimal(watch.price,1,'COMMA',2,'POINT')}">₹1,299</strong>
+                        <del th:if="${watch.oldPrice != null}" th:text="${'₹' + #numbers.formatDecimal(watch.oldPrice,1,'COMMA',2,'POINT')}">₹1,599</del>
+                    </div>
+                    <p th:text="${watch.description}">Description</p>
+                    <div class="spec-grid">
+                        <div>
+                            <small>Movement</small>
+                            <b th:text="${watch.movement}">Automatic</b>
+                        </div>
+                        <div>
+                            <small>Case size</small>
+                            <b th:text="${watch.caseSize}">42 mm</b>
+                        </div>
+                        <div>
+                            <small>Strap</small>
+                            <b th:text="${watch.strap}">Leather</b>
+                        </div>
+                        <div>
+                            <small>Water resistance</small>
+                            <b th:text="${watch.waterResistance}">5 ATM</b>
+                        </div>
+                    </div>
+                    <p class="stock-note" th:text="${watch.stock > 0 ? 'In stock · Ready to ship' : 'Currently unavailable'}">In stock</p>
+                    <div class="button-row">
+                        <form th:action="@{/cart/add/{id}(id=${watch.id})}" method="post">
+                            <button class="btn btn-gold" type="submit" th:disabled="${watch.stock <= 0}">Add to Cart</button>
+                        </form>
+                        <form th:action="@{/wishlist/toggle/{id}(id=${watch.id})}" method="post">
+                            <button class="btn btn-outline" type="submit">♡ Wishlist</button>
+                        </form>
+                    </div>
+                    <div class="detail-assurance">✧ Authenticity guaranteed · Secure checkout · Complimentary gift packaging</div>
+                </div>
+            </section>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>

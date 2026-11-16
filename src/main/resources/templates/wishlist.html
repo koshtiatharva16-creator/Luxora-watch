@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Wishlist | LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="wrap page-wrap">
+            <div class="page-intro">
+                <p class="eyebrow">SAVED FOR LATER</p>
+                <h1>Your Wishlist</h1>
+                <p>Timepieces you have your eye on.</p>
+            </div>
+            <div class="product-grid" th:if="${!#lists.isEmpty(watches)}">
+                <article class="product-card" th:each="w : ${watches}">
+                    <a class="product-image" th:href="@{/watch/{id}(id=${w.id})}">
+                        <img th:src="${w.imageUrl}" th:alt="${w.name}">
+                    </a>
+                    <div class="product-info">
+                        <p th:text="${w.brand}">Brand</p>
+                        <h3 th:text="${w.name}">Watch</h3>
+                        <strong th:text="${'₹' + #numbers.formatDecimal(w.price,1,'COMMA',2,'POINT')}">₹999</strong>
+                        <a class="text-link" th:href="@{/watch/{id}(id=${w.id})}">View details ↗</a>
+                        <form th:action="@{/wishlist/toggle/{id}(id=${w.id})}" method="post">
+                            <button class="remove-link" type="submit">Remove from wishlist</button>
+                        </form>
+                    </div>
+                </article>
+            </div>
+            <div class="empty-state" th:if="${#lists.isEmpty(watches)}">
+                <h2>Your wishlist is empty</h2>
+                <p>Save timepieces to find them here later.</p>
+                <a class="btn btn-gold" th:href="@{/collections}">Browse Collections</a>
+            </div>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>

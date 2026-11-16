@@ -1,0 +1,15 @@
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\config\SeedData.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\LuxoraApplication.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\model\AppUser.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\model\StoreOrder.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\model\Watch.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\repository\OrderRepository.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\repository\UserRepository.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\repository\WatchRepository.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\service\OrderService.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\service\UserService.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\service\WatchService.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\web\AdminController.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\web\AuthController.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\web\GlobalModelAdvice.java
+C:\Thymeleaf\luxora-watch-store\src\main\java\com\luxora\web\StoreController.java

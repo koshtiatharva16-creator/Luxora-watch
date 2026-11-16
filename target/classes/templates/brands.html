@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Our Brands | LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="wrap page-wrap">
+            <div class="page-intro">
+                <p class="eyebrow">THE NAMES BEHIND THE CRAFT</p>
+                <h1>Our Brands</h1>
+                <p>Explore the design languages and craftsmanship across our curated labels.</p>
+            </div>
+            <div class="brand-grid">
+                <a th:each="brand : ${ {'Luxora','Aurelius','Mariner','Velocity','LUXORA Atelier'} }" th:href="@{/collections(q=${brand})}" class="brand-card">
+                    <span class="brand-emblem">✧</span>
+                    <h2 th:text="${brand}">Brand</h2>
+                    <p>Discover the collection</p>
+                    <span class="text-link">Explore watches ↗</span>
+                </a>
+            </div>
+            <div class="brand-callout">
+                <div>
+                    <p class="eyebrow">PERSONAL SOURCING</p>
+                    <h2>Looking for something rare?</h2>
+                    <p>Our specialists can help you find the right timepiece.</p>
+                </div>
+                <a class="btn btn-gold" th:href="@{/contact}">Contact our team</a>
+            </div>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>

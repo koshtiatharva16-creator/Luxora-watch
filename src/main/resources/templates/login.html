@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sign In | LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="auth-shell">
+            <div class="auth-visual">
+                <p class="eyebrow">TIMELESS BY DESIGN</p>
+                <h1>
+                    Welcome
+                    <br>
+                    Back.
+                </h1>
+                <p>Return to a world of considered craftsmanship and exceptional timepieces.</p>
+            </div>
+            <form class="auth-card" th:action="@{/login}" method="post">
+                <p class="eyebrow">YOUR LUXORA ACCOUNT</p>
+                <h2>Sign in</h2>
+                <p class="muted">Continue your journey.</p>
+                <div class="alert" th:if="${error}" th:text="${error}"></div>
+                <label>
+                    Email address
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </label>
+                <label>
+                    Password
+                    <input
+                        name="password"
+                        type="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </label>
+                <input type="hidden" name="next" th:value="${next}">
+                <button class="btn btn-gold btn-full" type="submit">Sign In</button>
+                <p class="auth-switch">
+                    New to LUXORA?
+                    <a th:href="@{/register}">Create an account</a>
+                </p>
+            </form>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>

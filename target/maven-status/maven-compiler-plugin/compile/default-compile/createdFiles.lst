@@ -1,0 +1,15 @@
+com\luxora\service\OrderService.class
+com\luxora\config\SeedData.class
+com\luxora\service\WatchService.class
+com\luxora\repository\UserRepository.class
+com\luxora\service\UserService.class
+com\luxora\web\AdminController.class
+com\luxora\model\AppUser.class
+com\luxora\model\Watch.class
+com\luxora\web\GlobalModelAdvice.class
+com\luxora\repository\OrderRepository.class
+com\luxora\model\StoreOrder.class
+com\luxora\LuxoraApplication.class
+com\luxora\web\AuthController.class
+com\luxora\repository\WatchRepository.class
+com\luxora\web\StoreController.class

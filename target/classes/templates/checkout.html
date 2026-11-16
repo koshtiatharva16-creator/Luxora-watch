@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Checkout | LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="wrap page-wrap">
+            <div class="page-intro">
+                <p class="eyebrow">A FEW FINAL DETAILS</p>
+                <h1>Checkout</h1>
+                <p>Your next favourite timepiece is almost yours.</p>
+            </div>
+            <div class="checkout-layout">
+                <form class="form-card" th:action="@{/checkout}" method="post">
+                    <h2>Shipping Information</h2>
+                    <div class="form-grid">
+                        <label>
+                            Full name
+                            <input name="customerName" required th:value="${user.fullName}">
+                        </label>
+                        <label>
+                            Email address
+                            <input
+                                name="email"
+                                type="email"
+                                required
+                                th:value="${user.email}"
+                            >
+                        </label>
+                        <label>
+                            Phone number
+                            <input name="phone" required th:value="${user.phone}">
+                        </label>
+                        <label>
+                            Postal code
+                            <input name="postalCode" required>
+                        </label>
+                        <label class="span-two">
+                            Street address
+                            <input name="address" required th:value="${user.address}">
+                        </label>
+                        <label class="span-two">
+                            City
+                            <input name="city" required>
+                        </label>
+                    </div>
+                    <div class="notice">Demo checkout: this creates an order record. No payment is charged.</div>
+                    <button class="btn btn-gold btn-full" type="submit">Place Order</button>
+                </form>
+                <aside class="summary-card">
+                    <h2>Order Summary</h2>
+                    <div class="summary-line">
+                        <span>Items</span>
+                        <span th:text="${cartCount}">1</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Shipping</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Taxes</span>
+                        <span>Included</span>
+                    </div>
+                    <hr>
+                    <div class="summary-line total-line">
+                        <span>Total</span>
+                        <strong th:text="${'₹' + #numbers.formatDecimal(total,1,'COMMA',2,'POINT')}">₹999</strong>
+                    </div>
+                    <p class="fine-print">By placing your order, you agree to our store terms and returns policy.</p>
+                </aside>
+            </div>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>

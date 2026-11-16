@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>About LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main>
+            <section class="about-hero wrap">
+                <div>
+                    <p class="eyebrow">OUR PHILOSOPHY</p>
+                    <h1>
+                        Crafting Moments.
+                        <br>
+                        Preserving Time.
+                    </h1>
+                    <p>At LUXORA, we believe a watch is more than an instrument. It is a legacy, a memory, and a quiet expression of personal style. Our collection brings together considered design and enduring craftsmanship.</p>
+                    <a class="btn btn-gold" th:href="@{/collections}">Discover Our Collection</a>
+                </div>
+                <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=1200&q=85" alt="Luxury watch close-up">
+            </section>
+            <section class="stats-strip wrap">
+                <div>
+                    <strong>10+</strong>
+                    <span>Years of Excellence</span>
+                </div>
+                <div>
+                    <strong>25+</strong>
+                    <span>Curated Collections</span>
+                </div>
+                <div>
+                    <strong>5K+</strong>
+                    <span>Happy Customers</span>
+                </div>
+                <div>
+                    <strong>100%</strong>
+                    <span>Authenticity Commitment</span>
+                </div>
+            </section>
+            <section class="section wrap">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">THE LUXORA PROMISE</p>
+                        <h2>Luxury, with integrity.</h2>
+                    </div>
+                </div>
+                <div class="promise-grid">
+                    <article>
+                        <span>♧</span>
+                        <h3>Authenticity</h3>
+                        <p>Every piece is presented with clear details and a commitment to authenticity.</p>
+                    </article>
+                    <article>
+                        <span>◇</span>
+                        <h3>Considered Service</h3>
+                        <p>Thoughtful support from discovery through delivery and beyond.</p>
+                    </article>
+                    <article>
+                        <span>✧</span>
+                        <h3>Timeless Design</h3>
+                        <p>Collections chosen for their character, craftsmanship, and lasting appeal.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>

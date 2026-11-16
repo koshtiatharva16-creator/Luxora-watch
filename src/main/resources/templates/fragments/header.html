@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <header th:fragment="header" class="site-header">
+            <div class="topline">
+                <span>✦ FREE WORLDWIDE SHIPPING</span>
+                <span>EXCLUSIVE TIMEPIECES. TIMELESS ELEGANCE.</span>
+                <span>♢ AUTHORIZED DEALER</span>
+            </div>
+            <nav class="navbar wrap">
+                <a class="brandmark" th:href="@{/}">
+                    <span class="brand-symbol">⅄</span>
+                    <span>
+                        LUXORA
+                        <small>TIMEPIECES</small>
+                    </span>
+                </a>
+                <button class="menu-toggle" onclick="document.querySelector('.navlinks').classList.toggle('open')">☰</button>
+                <div class="navlinks">
+                    <a th:href="@{/}">Home</a>
+                    <a th:href="@{/collections}">Collections</a>
+                    <a th:href="@{/brands}">Brands</a>
+                    <a th:href="@{/collections(sort='name')}">New Arrivals</a>
+                    <a th:href="@{/about}">About Us</a>
+                    <a th:href="@{/contact}">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <a th:href="@{/collections}" aria-label="Search">⌕</a>
+                    <a th:if="${currentUser == null}" th:href="@{/login}" aria-label="Account">♙</a>
+                    <a th:if="${currentUser != null}" th:href="@{/profile}" aria-label="Profile">♙</a>
+                    <a th:href="@{/cart}" aria-label="Cart">♧</a>
+                </div>
+            </nav>
+            <div th:if="${currentUser != null}" class="welcome wrap">
+                Welcome,
+                <strong th:text="${currentUser.fullName}">Guest</strong>
+                <span th:if="${currentUser.role == 'ADMIN'}">
+                    ·
+                    <a th:href="@{/admin}">Admin dashboard</a>
+                </span>
+            </div>
+        </header>
+    </body>
+</html>

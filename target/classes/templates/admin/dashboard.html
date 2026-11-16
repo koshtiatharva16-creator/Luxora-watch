@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Admin | LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="wrap page-wrap">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">STORE MANAGEMENT</p>
+                    <h1>Admin Dashboard</h1>
+                    <p class="muted">Manage your catalog and monitor store activity.</p>
+                </div>
+                <a class="btn btn-gold" th:href="@{/admin/watches/new}">+ Add Watch</a>
+            </div>
+            <div class="admin-stats">
+                <div>
+                    <small>WATCHES</small>
+                    <strong th:text="${watchCount}">15</strong>
+                </div>
+                <div>
+                    <small>REGISTERED USERS</small>
+                    <strong th:text="${userCount}">0</strong>
+                </div>
+                <div>
+                    <small>ORDERS</small>
+                    <strong th:text="${orderCount}">0</strong>
+                </div>
+            </div>
+            <div class="table-card">
+                <h2>Watch Catalog</h2>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Watch</th>
+                                <th>Brand</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="w : ${watches}">
+                                <td>
+                                    <div class="table-product">
+                                        <img th:src="${w.imageUrl}" alt="">
+                                        <span th:text="${w.name}">Watch</span>
+                                    </div>
+                                </td>
+                                <td th:text="${w.brand}">Brand</td>
+                                <td th:text="${w.category}">Classic</td>
+                                <td th:text="${'₹' + #numbers.formatDecimal(w.price,1,'COMMA',2,'POINT')}">₹999</td>
+                                <td th:text="${w.stock}">10</td>
+                                <td class="table-actions">
+                                    <a th:href="@{/admin/watches/{id}/edit(id=${w.id})}">Edit</a>
+                                    <form th:action="@{/admin/watches/{id}/delete(id=${w.id})}" method="post" onsubmit="return confirm('Delete this watch?')">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="table-card">
+                <h2>Recent Orders</h2>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="o : ${orders}">
+                                <td th:text="${'LX-' + o.id}">LX-1</td>
+                                <td th:text="${o.customerName}">Customer</td>
+                                <td th:text="${#temporals.format(o.createdAt,'dd MMM yyyy')}">Date</td>
+                                <td th:text="${o.status}">Placed</td>
+                                <td th:text="${'₹' + #numbers.formatDecimal(o.total,1,'COMMA',2,'POINT')}">₹999</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>
+<!-- - Email: admin@luxora.com
+- Password: LuxoraAdmin@2026 -->

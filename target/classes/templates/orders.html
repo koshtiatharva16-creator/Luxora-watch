@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>My Orders | LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="wrap page-wrap">
+            <div class="page-intro">
+                <p class="eyebrow">YOUR LUXORA JOURNEY</p>
+                <h1>My Orders</h1>
+                <p>Every order, thoughtfully recorded.</p>
+            </div>
+            <div class="orders-list" th:if="${!#lists.isEmpty(orders)}">
+                <article class="order-card" th:each="o : ${orders}">
+                    <div class="order-top">
+                        <div>
+                            <small>ORDER NUMBER</small>
+                            <h3 th:text="${'LX-' + o.id}">LX-100</h3>
+                        </div>
+                        <span class="status-pill" th:text="${o.status}">Placed</span>
+                    </div>
+                    <p th:text="${o.itemsSummary}">Watch x 1</p>
+                    <div class="summary-line">
+                        <span th:text="${#temporals.format(o.createdAt,'dd MMM yyyy, HH:mm')}">Date</span>
+                        <strong th:text="${'₹' + #numbers.formatDecimal(o.total,1,'COMMA',2,'POINT')}">₹999</strong>
+                    </div>
+                </article>
+            </div>
+            <div class="empty-state" th:if="${#lists.isEmpty(orders)}">
+                <h2>No orders yet</h2>
+                <p>Your next favourite timepiece is waiting.</p>
+                <a class="btn btn-gold" th:href="@{/collections}">Explore Watches</a>
+            </div>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>

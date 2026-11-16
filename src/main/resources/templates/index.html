@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>LUXORA | Luxury Timepieces</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main>
+            <section class="hero">
+                <div class="hero-shade"></div>
+                <div class="wrap hero-content">
+                    <p class="eyebrow">PRECISION. HERITAGE. LUXURY.</p>
+                    <h1>
+                        Timeless Craft.
+                        <br>
+                        Defining You.
+                    </h1>
+                    <p class="hero-copy">Discover our curated collection of luxury timepieces, crafted for those who value time as much as style.</p>
+                    <div class="button-row">
+                        <a class="btn btn-gold" th:href="@{/collections}">Explore Collection</a>
+                        <a class="btn btn-outline" th:href="@{/collections(sort='name')}">Shop New Arrivals</a>
+                    </div>
+                    <div class="trust-row">
+                        <span>
+                            ♧
+                            <b>AUTHENTICITY</b>
+                            <small>100% Authentic Guaranteed</small>
+                        </span>
+                        <span>
+                            ◇
+                            <b>WARRANTY</b>
+                            <small>Up to 5 Years International</small>
+                        </span>
+                        <span>
+                            ⬡
+                            <b>FREE SHIPPING</b>
+                            <small>Worldwide on all orders</small>
+                        </span>
+                    </div>
+                </div>
+                <div class="hero-watch"></div>
+            </section>
+            <section class="section wrap">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">DISCOVER YOUR SIGNATURE</p>
+                        <h2>Shop by Collection</h2>
+                    </div>
+                    <a class="text-link" th:href="@{/collections}">View all collections ↗</a>
+                </div>
+                <div class="collection-grid">
+                    <a class="collection-tile" th:each="c : ${ {'Classic','Heritage','Sport','Ladies'} }" th:href="@{/collections(category=${c})}">
+                        <span th:text="${c}">Classic</span>
+                        <small>Discover the collection ↗</small>
+                    </a>
+                </div>
+            </section>
+            <section class="section featured-section">
+                <div class="wrap">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">THE ART OF TIME</p>
+                            <h2>Curated Timepieces</h2>
+                        </div>
+                        <a class="text-link" th:href="@{/collections}">View all watches ↗</a>
+                    </div>
+                    <div class="product-grid">
+                        <article class="product-card" th:each="w : ${featured}">
+                            <a th:href="@{/watch/{id}(id=${w.id})}" class="product-image">
+                                <img th:src="${w.imageUrl}" th:alt="${w.name}">
+                                <span class="product-tag">FEATURED</span>
+                            </a>
+                            <div class="product-info">
+                                <p th:text="${w.brand}">Brand</p>
+                                <h3 th:text="${w.name}">Watch name</h3>
+                                <strong th:text="${'₹' + #numbers.formatDecimal(w.price,1,'COMMA',2,'POINT')}">₹1,299.00</strong>
+                                <a class="text-link" th:href="@{/watch/{id}(id=${w.id})}">View details ↗</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <section class="promise-strip wrap">
+                <div>
+                    <span>♧</span>
+                    <b>Expert Support</b>
+                    <small>Guidance from our specialists</small>
+                </div>
+                <div>
+                    <span>◇</span>
+                    <b>Easy Returns</b>
+                    <small>30-day return window</small>
+                </div>
+                <div>
+                    <span>♙</span>
+                    <b>Secure Checkout</b>
+                    <small>Your details stay protected</small>
+                </div>
+                <div>
+                    <span>✧</span>
+                    <b>Gift Packaging</b>
+                    <small>Complimentary presentation</small>
+                </div>
+            </section>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+        <script th:src="@{/js/site.js}"></script>
+    </body>
+</html>

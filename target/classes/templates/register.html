@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Create Account | LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="auth-shell">
+            <div class="auth-visual">
+                <p class="eyebrow">YOUR STORY. YOUR TIME.</p>
+                <h1>
+                    Begin Your
+                    <br>
+                    Legacy.
+                </h1>
+                <p>Create your account to save favourites, track orders, and discover your signature timepiece.</p>
+            </div>
+            <form class="auth-card" th:action="@{/register}" method="post">
+                <p class="eyebrow">JOIN THE LUXORA WORLD</p>
+                <h2>Create account</h2>
+                <p class="muted">A more personal shopping experience starts here.</p>
+                <div class="alert" th:if="${error}" th:text="${error}"></div>
+                <label>
+                    Full name
+                    <input
+                        name="fullName"
+                        required
+                        minlength="2"
+                        placeholder="Your full name"
+                    >
+                </label>
+                <label>
+                    Email address
+                    <input
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="you@example.com"
+                    >
+                </label>
+                <label>
+                    Password
+                    <input
+                        name="password"
+                        type="password"
+                        required
+                        minlength="8"
+                        placeholder="At least 8 characters"
+                    >
+                </label>
+                <label>
+                    Confirm password
+                    <input
+                        name="confirmPassword"
+                        type="password"
+                        required
+                        minlength="8"
+                        placeholder="Repeat password"
+                    >
+                </label>
+                <button class="btn btn-gold btn-full" type="submit">Create Account</button>
+                <p class="auth-switch">
+                    Already a member?
+                    <a th:href="@{/login}">Sign in</a>
+                </p>
+            </form>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Contact | LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="wrap page-wrap">
+            <div class="page-intro">
+                <p class="eyebrow">WE ARE HERE TO HELP</p>
+                <h1>Contact Our Team</h1>
+                <p>Have a question about a timepiece? We would love to hear from you.</p>
+            </div>
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <article>
+                        <span>✉</span>
+                        <div>
+                            <h3>Email</h3>
+                            <p>support@luxora.example</p>
+                        </div>
+                    </article>
+                    <article>
+                        <span>⌕</span>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+91 00000 00000</p>
+                        </div>
+                    </article>
+                    <article>
+                        <span>⌖</span>
+                        <div>
+                            <h3>Visit</h3>
+                            <p>By appointment · Customer concierge</p>
+                        </div>
+                    </article>
+                    <article>
+                        <span>◷</span>
+                        <div>
+                            <h3>Hours</h3>
+                            <p>Monday – Saturday, 10:00 AM – 6:00 PM</p>
+                        </div>
+                    </article>
+                </div>
+                <form class="form-card" th:action="@{/contact}" method="post">
+                    <div class="success" th:if="${sent}">Thank you. Your message has been recorded for this demo.</div>
+                    <label>
+                        Full name
+                        <input name="name" required>
+                    </label>
+                    <label>
+                        Email address
+                        <input name="email" type="email" required>
+                    </label>
+                    <label>
+                        Subject
+                        <input name="subject" required>
+                    </label>
+                    <label>
+                        Message
+                        <textarea name="message" rows="5" required></textarea>
+                    </label>
+                    <button class="btn btn-gold btn-full" type="submit">Send Message</button>
+                </form>
+            </div>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>

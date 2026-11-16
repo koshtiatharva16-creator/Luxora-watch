@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>My Profile | LUXORA</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="wrap page-wrap">
+            <div class="page-intro">
+                <p class="eyebrow">YOUR ACCOUNT</p>
+                <h1>My Profile</h1>
+                <p>Manage your details and preferences.</p>
+            </div>
+            <div class="profile-layout">
+                <aside class="profile-nav">
+                    <a class="active" th:href="@{/profile}">Profile details</a>
+                    <a th:href="@{/orders}">My orders</a>
+                    <a th:href="@{/wishlist}">Wishlist</a>
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit">Sign out</button>
+                    </form>
+                </aside>
+                <form class="form-card" th:action="@{/profile}" method="post">
+                    <div th:if="${param.updated}" class="success">Profile updated successfully.</div>
+                    <h2>Account information</h2>
+                    <div class="form-grid">
+                        <label class="span-two">
+                            Full name
+                            <input name="fullName" required th:value="${user.fullName}">
+                        </label>
+                        <label class="span-two">
+                            Email address
+                            <input th:value="${user.email}" disabled>
+                            <small>Email address cannot be changed here.</small>
+                        </label>
+                        <label class="span-two">
+                            Phone number
+                            <input name="phone" th:value="${user.phone}">
+                        </label>
+                        <label class="span-two">
+                            Default address
+                            <textarea name="address" rows="3" th:text="${user.address}"></textarea>
+                        </label>
+                    </div>
+                    <button class="btn btn-gold" type="submit">Save Changes</button>
+                </form>
+            </div>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>

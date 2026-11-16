@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <footer th:fragment="footer" class="footer">
+            <div class="wrap footer-grid">
+                <div>
+                    <a class="brandmark" th:href="@{/}">
+                        <span class="brand-symbol">⅄</span>
+                        <span>
+                            LUXORA
+                            <small>TIMEPIECES</small>
+                        </span>
+                    </a>
+                    <p>Precision. Heritage. Luxury.</p>
+                </div>
+                <div>
+                    <h4>Explore</h4>
+                    <a th:href="@{/collections}">Collections</a>
+                    <a th:href="@{/brands}">Brands</a>
+                    <a th:href="@{/about}">Our story</a>
+                </div>
+                <div>
+                    <h4>Customer care</h4>
+                    <a th:href="@{/contact}">Contact us</a>
+                    <a th:href="@{/orders}">My orders</a>
+                    <a th:href="@{/profile}">My account</a>
+                </div>
+                <div>
+                    <h4>Our promise</h4>
+                    <p>Authenticity guaranteed</p>
+                    <p>Secure checkout</p>
+                    <p>Worldwide delivery</p>
+                </div>
+            </div>
+            <div class="copyright">© 2026 LUXORA Timepieces. Crafted for the moments that matter.</div>
+        </footer>
+    </body>
+</html>

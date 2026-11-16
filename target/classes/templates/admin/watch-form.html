@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title th:text="${formTitle} + ' | LUXORA'">
+            Manage Watch | LUXORA
+        </title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+    <body>
+        <!-- Header -->
+        <div th:replace="~{fragments/header :: header}"></div>
+        <main class="wrap page-wrap narrow-page">
+            <p class="eyebrow">CATALOG MANAGEMENT</p>
+            <h1 th:text="${formTitle}">Add Watch</h1>
+            <p>
+                Add a new watch to your LUXORA collection
+            or update an existing watch.
+            </p>
+            <!-- Watch Form -->
+            <form
+                class="form-card"
+                th:action="@{/admin/watches/save}"
+                th:object="${watch}"
+                method="post"
+            >
+                <!-- Hidden ID: null for insert, existing ID for update -->
+                <input type="hidden" th:field="*{id}">
+                <div class="form-grid">
+                    <!-- Watch Name -->
+                    <label>
+                        Watch Name
+                        <input
+                            type="text"
+                            th:field="*{name}"
+                            placeholder="Enter watch name"
+                            required
+                        >
+                        <small class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                    </label>
+                    <!-- Brand -->
+                    <label>
+                        Brand
+                        <input
+                            type="text"
+                            th:field="*{brand}"
+                            placeholder="Enter brand"
+                            required
+                        >
+                        <small class="error" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></small>
+                    </label>
+                    <!-- Category -->
+                    <label>
+                        Category
+                        <select th:field="*{category}" required>
+                            <option value="">Select Category</option>
+                            <option value="Classic">Classic</option>
+                            <option value="Heritage">Heritage</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Ladies">Ladies</option>
+                            <option value="Limited Edition">Limited Edition</option>
+                        </select>
+                        <small class="error" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></small>
+                    </label>
+                    <!-- Price -->
+                    <label>
+                        Price (INR)
+                        <input
+                            type="number"
+                            step="0.01"
+                            min="0.01"
+                            th:field="*{price}"
+                            placeholder="Enter price"
+                            required
+                        >
+                        <small class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
+                    </label>
+                    <!-- Old Price -->
+                    <label>
+                        Old Price (INR)
+                        <input
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            th:field="*{oldPrice}"
+                            placeholder="Enter old price"
+                        >
+                        <small class="error" th:if="${#fields.hasErrors('oldPrice')}" th:errors="*{oldPrice}"></small>
+                    </label>
+                    <!-- Stock -->
+                    <label>
+                        Stock Quantity
+                        <input
+                            type="number"
+                            min="0"
+                            th:field="*{stock}"
+                            placeholder="Enter stock quantity"
+                        >
+                    </label>
+                    <!-- Image URL -->
+                    <label class="span-two">
+                        Watch Image URL
+                        <input
+                            type="text"
+                            th:field="*{imageUrl}"
+                            placeholder="Enter image URL"
+                            required
+                        >
+                        <small class="error" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"></small>
+                    </label>
+                    <!-- Movement -->
+                    <label>
+                        Movement
+                        <input type="text" th:field="*{movement}" placeholder="e.g. Automatic">
+                    </label>
+                    <!-- Case Size -->
+                    <label>
+                        Case Size
+                        <input type="text" th:field="*{caseSize}" placeholder="e.g. 42 mm">
+                    </label>
+                    <!-- Strap -->
+                    <label>
+                        Strap
+                        <input type="text" th:field="*{strap}" placeholder="e.g. Leather">
+                    </label>
+                    <!-- Water Resistance -->
+                    <label>
+                        Water Resistance
+                        <input type="text" th:field="*{waterResistance}" placeholder="e.g. 5 ATM">
+                    </label>
+                    <!-- Description -->
+                    <label class="span-two">
+                        Description
+                        <textarea
+                            th:field="*{description}"
+                            rows="5"
+                            placeholder="Enter watch description"
+                            required
+                        ></textarea>
+                        <small class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+                    </label>
+                    <!-- Featured -->
+                    <label class="check-label">
+                        <input type="checkbox" th:field="*{featured}">
+                        Featured on Home Page
+                    </label>
+                </div>
+                <!-- Buttons -->
+                <div class="button-row">
+                    <button class="btn btn-gold" type="submit">
+                        <span th:text="${watch.id == null}
+                        ? 'Insert Watch'
+                        : 'Update Watch'">
+                            Save Watch
+                        </span>
+                    </button>
+                    <a class="btn btn-outline" th:href="@{/admin}">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </main>
+        <!-- Footer -->
+        <div th:replace="~{fragments/footer :: footer}"></div>
+    </body>
+</html>
